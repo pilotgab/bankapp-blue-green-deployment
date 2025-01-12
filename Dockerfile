@@ -7,8 +7,11 @@ EXPOSE 8080
 # Set the application home environment variable
 ENV APP_HOME=/usr/src/app
 
+# Install necessary utilities
+RUN apk add --no-cache shadow
+
 # Create a new user and group
-RUN groupadd --system appgroup && useradd --system --gid appgroup --create-home --home-dir $APP_HOME appuser
+RUN groupadd -S appgroup && useradd -S -g appgroup -d $APP_HOME appuser
 
 # Copy the application JAR file into the container
 COPY target/*.jar $APP_HOME/app.jar
