@@ -5,10 +5,10 @@ FROM eclipse-temurin:17-jdk-alpine
 EXPOSE 8080
 
 # Set the application home environment variable
-ENV APP_HOME /usr/src/app
+ENV APP_HOME=/usr/src/app
 
 # Create a new user and group
-RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+RUN groupadd --system appgroup && useradd --system --gid appgroup --create-home --home-dir $APP_HOME appuser
 
 # Copy the application JAR file into the container
 COPY target/*.jar $APP_HOME/app.jar
