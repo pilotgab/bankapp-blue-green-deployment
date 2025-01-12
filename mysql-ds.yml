@@ -16,23 +16,23 @@ spec:
         app: mysql
     spec:
       containers:
-      - image: mysql:8
-        name: mysql
-        env:
-        - name: MYSQL_ROOT_PASSWORD
-          value: "Test@123"
-        - name: MYSQL_DATABASE
-          value: "bankappdb"
-        ports:
-        - containerPort: 3306
+        - image: mysql:8
           name: mysql
-        resources:
-          requests:
-            memory: "1Gi"
-            cpu: "500m"
-          limits:
-            memory: "2Gi"
-            cpu: "1000m"
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: "Test@123"
+            - name: MYSQL_DATABASE
+              value: "bankappdb"
+          ports:
+            - containerPort: 3306
+              name: mysql
+          resources:
+            requests:
+              memory: "1Gi"
+              cpu: "500m"
+            limits:
+              memory: "2Gi"
+              cpu: "1000m"
 ---
 # MySQL Service
 apiVersion: v1
@@ -41,6 +41,6 @@ metadata:
   name: mysql-service
 spec:
   ports:
-  - port: 3306
+    - port: 3306
   selector:
     app: mysql
