@@ -10,7 +10,7 @@ values: |
   loki:
     enabled: true
 
-  fluent-bit:
+  promtail:
     enabled: true
     config:
       logLevel: info
