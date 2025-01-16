@@ -5,12 +5,15 @@ chart:
   name: kube-prometheus-stack
   releaseName: kube-prometheus-stack
   repoURL: https://prometheus-community.github.io/helm-charts
-  targetRevision: 56.21.4
+  targetRevision: 67.4.0
 values: |
+  defaultRules:
+    create: true
+
   alertmanager:
     enabled: true
 
-  server:
+  prometheus:
     persistentVolume:
       enabled: true
       size: 50Gi
