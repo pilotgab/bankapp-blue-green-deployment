@@ -1,8 +1,0 @@
-application: fluent-bit
-clusterConfig:
-  namespace: monitoring
-chart:
-  chartUrl: https://fluent.github.io/helm-charts
-  Name: fluent-bit
-  releaseName: fluent-bit
-  targetRevision: v3.2.4
