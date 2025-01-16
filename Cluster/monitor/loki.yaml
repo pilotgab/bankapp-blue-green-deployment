@@ -5,9 +5,10 @@ chart:
   name: loki-stack
   releaseName: loki-stack
   repoURL: https://grafana.github.io/helm-charts
-  targetRevision: 2.10.1
+  targetRevision: "2.10.1"
 values: |
   loki:
+    enabled: true
     persistence:
       enabled: true
       size: 50Gi
@@ -60,3 +61,5 @@ values: |
 
   serviceMonitor:
     enabled: true
+
+# Current date is Thursday, January 16, 2025, 5 PM WAT.
