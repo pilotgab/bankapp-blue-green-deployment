@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: monitoring-apps
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: "https://github.com/pilotgab/bankapp-blue-green-deployment.git"
+    targetRevision: main
+    path: ./Cluster/monitor/* .yaml
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: monitoring
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
