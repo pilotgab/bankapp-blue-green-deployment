@@ -1,19 +1,8 @@
-application: loki-stack
+application: loki-distributed
 clusterConfig:
   namespace: monitoring
 chart:
-  name: loki-stack
-  releaseName: loki-stack
+  name: loki-distributed
+  releaseName: loki-distributed
   repoURL: https://grafana.github.io/helm-charts
-  targetRevision: "2.10.1"
-values: |
-  loki:
-    enabled: true
-
-  promtail:
-    enabled: true
-    config:
-      logLevel: info
-      serverPort: 3100
-      clients:
-        - url: http://loki.monitoring.svc.cluster.local
+  targetRevision: 0.80.0
