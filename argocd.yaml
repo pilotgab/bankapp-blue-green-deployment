@@ -8,7 +8,9 @@ spec:
   source:
     repoURL: "https://github.com/pilotgab/bankapp-blue-green-deployment.git"
     targetRevision: main
-    path: ./Cluster/monitor/* .yaml
+    path: ./Cluster/monitor
+    directory:
+      recurse: true
   destination:
     server: "https://kubernetes.default.svc"
     namespace: monitoring
