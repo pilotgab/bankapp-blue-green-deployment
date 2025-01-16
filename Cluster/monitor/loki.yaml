@@ -6,56 +6,56 @@ chart:
   releaseName: loki-stack
   repoURL: https://grafana.github.io/helm-charts
   targetRevision: 2.10.1
-  values: |
-    loki:
-      persistence:
-        enabled: true
-        size: 50Gi
-        storageClassName: gp2
-
-    fluent-bit:
+values: |
+  loki:
+    persistence:
       enabled: true
-      config:
-        service: |
-          [SERVICE]
-              Flush        5
-              Log_Level    info
-              Daemon       off
-              Parsers_File parsers.conf
-        input: |
-          [INPUT]
-              Name         tail
-              Path         /var/log/containers/*.log
-              Parser       docker
-              Tag          kube.*
-              Refresh_Interval 5
-        filter: |
-          [FILTER]
-              Name         kubernetes
-              Match        kube.*
-              Kube_URL     https://kubernetes.default.svc:443
-              Merge_Log    on
-              Keep_Log     off
-              Annotations  off
-              Labels       off
-        output: |
-          [OUTPUT]
-              Name         loki
-              Match        *
-              Host         loki.monitoring.svc.cluster.local
-              Port         3100
-              Labels       job=fluent-bit
-              Auto_Kubernetes_Labels on
-              RemoveKeys   kubernetes,stream
-              LineFormat   json
-        parsers: |
-          [PARSER]
-              Name        docker
-              Format      json
-              Time_Key    time
-              Time_Format %Y-%m-%dT%H:%M:%S.%L
-              Time_Keep   On
-              Decode_Field_As   escaped_utf8 log
-              Decode_Field_As   json log
-        serviceMonitor:
-          enabled: true
+      size: 50Gi
+      storageClassName: gp2
+
+  fluent-bit:
+    enabled: true
+    config:
+      service: |
+        [SERVICE]
+            Flush        5
+            Log_Level    info
+            Daemon       off
+            Parsers_File parsers.conf
+      input: |
+        [INPUT]
+            Name         tail
+            Path         /var/log/containers/*.log
+            Parser       docker
+            Tag          kube.*
+            Refresh_Interval 5
+      filter: |
+        [FILTER]
+            Name         kubernetes
+            Match        kube.*
+            Kube_URL     https://kubernetes.default.svc:443
+            Merge_Log    on
+            Keep_Log     off
+            Annotations  off
+            Labels       off
+      output: |
+        [OUTPUT]
+            Name         loki
+            Match        *
+            Host         loki.monitoring.svc.cluster.local
+            Port         3100
+            Labels       job=fluent-bit
+            Auto_Kubernetes_Labels on
+            RemoveKeys   kubernetes,stream
+            LineFormat   json
+      parsers: |
+        [PARSER]
+            Name        docker
+            Format      json
+            Time_Key    time
+            Time_Format %Y-%m-%dT%H:%M:%S.%L
+            Time_Keep   On
+            Decode_Field_As   escaped_utf8 log
+            Decode_Field_As   json log
+    serviceMonitor:
+      enabled: true
