@@ -5,7 +5,7 @@ chart:
   name: grafana
   releaseName: grafana
   chartUrl: https://grafana.github.io/helm-charts
-  targetRevision: v11.0
+  targetRevision: 6.0.0
   values: |
     admin:
       existingSecret: grafana-admin-secret

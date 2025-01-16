@@ -5,7 +5,7 @@ chart:
   name: loki-stack
   releaseName: loki-stack
   repoURL: https://grafana.github.io/helm-charts
-  targetRevision: v3.3.2
+  targetRevision: 2.10.1
   values: |
     loki:
       persistence:
