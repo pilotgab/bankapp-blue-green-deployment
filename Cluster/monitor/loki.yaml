@@ -1,0 +1,14 @@
+application: loki-stack
+clusterConfig:
+  namespace: monitoring
+chart:
+  name: loki-stack
+  releaseName: loki-stack
+  repoURL: https://grafana.github.io/helm-charts
+  targetRevision: v3.3.2
+  values: |
+    loki:
+      persistence:
+        enabled: true
+        size: 50Gi
+        storageClassName: gp2

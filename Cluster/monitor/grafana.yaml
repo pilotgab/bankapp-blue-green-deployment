@@ -1,0 +1,24 @@
+application: grafana
+clusterConfig:
+  namespace: monitoring
+chart:
+  name: grafana
+  releaseName: grafana
+  chartUrl: https://grafana.github.io/helm-charts
+  targetRevision: v11.0
+  values: |
+    admin:
+      existingSecret: grafana-admin-secret
+    persistence:
+      enabled: true
+      size: 10Gi
+      storageClassName: gp2
+
+    datasources:
+      datasources.yaml:
+        apiVersion: 1
+        datasources:
+          - name: Prometheus
+            type: prometheus
+            url: http://prometheus-server.monitoring.svc.cluster.local
+            access: proxy

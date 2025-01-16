@@ -1,0 +1,29 @@
+application: thanos
+clusterConfig:
+  namespace: monitoring
+chart:
+  name: thanos
+  releaseName: thanos
+  repoURL: https://thanos-io.github.io/helm-charts
+  targetRevision: latest
+  values: |
+    objstoreConfig:
+      type: S3
+      config:
+        bucket: promethues-bucket
+        endpoint: s3.us-east-1.amazonaws.com
+        access_key:
+          name: s3-credentials
+          key: access_key
+        secret_key:
+          name: s3-credentials
+          key: secret_key
+        insecure: false
+
+    sidecar:
+      enabled: true
+      prometheusService: prometheus-server.monitoring.svc.cluster.local
+
+    query:
+      replicaLabels:
+        - "prometheus_replica"

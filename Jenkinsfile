@@ -1,7 +1,10 @@
 pipeline {
-    agent any
+    agent{
+        label "jenkins-agent"
+    }
 
     tools {
+        jdk 'Java17'
         maven "maven3"
     }
 
@@ -37,7 +40,7 @@ pipeline {
                 expression { return !params.SKIP_TESTS }
             }
             steps {
-                sh "mvn test -DskipTests=true"
+                sh "mvn test"
             }
         }
 
