@@ -57,5 +57,5 @@ values: |
             Time_Keep   On
             Decode_Field_As   escaped_utf8 log
             Decode_Field_As   json log
-    serviceMonitor:
-      enabled: true
+      serviceMonitor:
+        enabled: true
