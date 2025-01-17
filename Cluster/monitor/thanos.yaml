@@ -4,13 +4,13 @@ clusterConfig:
 chart:
   name: thanos
   releaseName: thanos
-  repoURL: https://github.com/thanos-io/thanos
-  targetRevision: 0.37.2
+  repoURL: https://charts.bitnami.com/bitnami
+  targetRevision: 15.9.2
   values: |
     objstoreConfig:
       type: S3
       config:
-        bucket: promethues-bucket
+        bucket: prometheus-bucket
         endpoint: s3.us-east-1.amazonaws.com
         access_key:
           name: s3-credentials
