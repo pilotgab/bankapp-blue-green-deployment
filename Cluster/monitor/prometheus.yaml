@@ -7,8 +7,15 @@ chart:
   repoURL: https://prometheus-community.github.io/helm-charts
   targetRevision: 68.1.1
   values: |
+    serviceAccount:
+      create: true
+      name: prometheus-sa
+      annotations:
+        eks.amazonaws.com/role-arn: arn:aws:iam::345594590281:role/prom-role
+
     prometheus:
       prometheusSpec:
+        serviceAccountName: prometheus-sa
         serviceMonitorSelectorNilUsesHelmValues: false
         serviceMonitorSelector: {}
         serviceMonitorNamespaceSelector: {}

@@ -6,3 +6,4 @@ chart:
   releaseName: loki-distributed
   repoURL: https://grafana.github.io/helm-charts
   targetRevision: 0.80.0
+  values: |

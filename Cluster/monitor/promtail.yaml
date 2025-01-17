@@ -7,8 +7,6 @@ chart:
   chartUrl: https://grafana.github.io/helm-charts
   targetRevision: 16.16.6
   values: |
-    promtail:
-      enabled: true
-      config:
-        lokiAddress: "http://loki-loki-distributed-gateway/loki/api/v1/push"
-        logLevel: info
+    config:
+      lokiAddress: "http://loki-loki-distributed-gateway/loki/api/v1/push"
+      logLevel: info
