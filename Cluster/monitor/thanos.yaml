@@ -4,7 +4,7 @@ clusterConfig:
 chart:
   name: thanos
   releaseName: thanos
-  repoURL: https://thanos-io.github.io/helm-charts
+  repoURL: https://github.com/thanos-io/thanos
   targetRevision: 0.37.2
   values: |
     objstoreConfig:
