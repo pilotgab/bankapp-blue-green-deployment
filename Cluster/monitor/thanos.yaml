@@ -4,7 +4,7 @@ clusterConfig:
 chart:
   name: thanos
   releaseName: thanos
-  repoURL: https://charts.bitnami.com/bitnami
+  repoURL: https://github.com/bitnami/charts/tree/main/bitnami/thanos
   targetRevision: 15.10.0
   values: |
     objstoreConfig:
