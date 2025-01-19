@@ -5,7 +5,7 @@ chart:
   name: external-secrets
   releaseName: external-secrets
   repoURL: https://charts.external-secrets.io
-  targetRevision: 8.5.5
+  targetRevision: "v0.12.1"
   values: |
     controller:
       replicaCount: 1
