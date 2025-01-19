@@ -1,0 +1,62 @@
+application: traefik
+clusterConfig:
+  namespace: traefik
+  createNamespace: true
+chart:
+  name: traefik
+  releaseName: traefik
+  repoURL: https://traefik.github.io/charts
+  targetRevision: v3.3.2
+  values: |
+    ---
+    image:
+      repository: traefik
+      tag: v3.3.2
+      pullPolicy: IfNotPresent
+
+    ports:
+      web:
+        redirections:
+          entryPoint:
+            to: websecure
+            scheme: https
+            permanent: true
+
+   # ingressRoute:
+   #   dashboard:
+   #     enabled: false
+   #     entryPoints:
+   #       - websecure
+   #     matchRule: Host(`dashboard.<your-domain>`)  # Replace with #your dashboard domain
+   #     middlewares:
+   #       - name: auth-middleware  # Replace with your authentication middleware, if needed
+   #     tls:
+    #      secretName: dashboard-tls  # Replace with your TLS secret name
+
+    # ACME Let's Encrypt configuration with Cloudflare DNS challenge
+    providers:
+      tls:
+        certificatesResolvers:
+          letsencrypt:
+            acme:
+              email: gabidachaba@gmail.com
+              storage: /data/acme.json
+              dnsChallenge:
+                provider: cloudflare
+                delayBeforeCheck: 0
+                resolvers:
+                  - 1.1.1.1:53
+
+    env:
+      - name: CF_API_TOKEN
+        valueFrom:
+          secretKeyRef:
+            name: cloudflare-api-token-secret
+            key: apiToken
+
+    # Log configuration
+    logs:
+      general:
+        level: INFO
+      access:
+        enabled: true

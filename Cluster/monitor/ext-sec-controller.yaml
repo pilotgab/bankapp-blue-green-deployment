@@ -1,0 +1,19 @@
+application: external-secrets
+clusterConfig:
+  namespace: kube-system
+chart:
+  name: external-secrets
+  releaseName: external-secrets
+  repoURL: https://charts.external-secrets.io
+  targetRevision: 8.5.5
+  values: |
+    controller:
+      replicaCount: 1
+      serviceAccount:
+        create: true
+        name: external-secrets-sa
+        namespace: kube-system
+        annotations:
+          eks.amazonaws.com/role-arn: arn:aws:iam::345594590281:role/secret-mg-sa-role
+    logs:
+      level: info
