@@ -9,7 +9,7 @@ spec:
         repoURL: "https://github.com/pilotgab/bankapp-blue-green-deployment.git"
         revision: main
         files:
-          - path: "Cluster/monitor/*.yaml"
+          - path: "appset/monitoring/*.yaml"
   template:
     metadata:
       name: "{{application}}"
