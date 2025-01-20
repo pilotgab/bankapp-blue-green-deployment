@@ -10,7 +10,6 @@ chart:
     controller:
       replicaCount: 1
       serviceAccount:
-        create: true
         name: external-secrets-sa
         namespace: kube-system
         annotations:

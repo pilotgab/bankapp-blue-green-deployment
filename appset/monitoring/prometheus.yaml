@@ -8,7 +8,6 @@ chart:
   targetRevision: 68.2.1
   values: |
     serviceAccount:
-      create:true
       name: prometheus-sa
       annotations:
         eks.amazonaws.com/role-arn: arn:aws:iam::345594590281:role/prom-role
